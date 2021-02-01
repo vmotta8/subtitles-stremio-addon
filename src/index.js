@@ -38,7 +38,21 @@ function idf (wordsCounted) {
   const index = {}
 
   for (const word in wordsCounted) {
-    index[word] = 15341 / wordsCounted[word].number_doc
+    index[word] = Math.log10(15341 / wordsCounted[word].number_doc)
+  }
+
+  return index
+}
+
+function tfidf (TFObj, IDFObj) {
+  const index = {}
+
+  for (const word in TFObj) {
+    if (!(IDFObj[word])) {
+      //
+    } else {
+      index[word] = TFObj[word] * IDFObj[word]
+    }
   }
 
   return index
@@ -48,3 +62,6 @@ const subtitleArr = stringToArray(subtitle)
 const subtitleCounted = countWords(subtitleArr)
 const subtitleTF = tf(subtitleCounted)
 const wordsIDF = idf(words)
+const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
+
+console.log(subtitleTFIDF)
