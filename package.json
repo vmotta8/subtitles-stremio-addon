@@ -1,0 +1,19 @@
+{
+  "name": "subtitles-translator-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "index": "node src/index.js"
+  },
+  "repository": "https://github.com/vmotta8/subtitles-translator-ts.git",
+  "author": "Vinicius Motta <viniciusmotta8@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "git-commit-msg-linter": "^3.0.0"
+  }
+}
