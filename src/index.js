@@ -58,10 +58,35 @@ function tfidf (TFObj, IDFObj) {
   return index
 }
 
+function sortable (obj, number) {
+  const index = []
+  for (const vehicle in obj) {
+    index.push([vehicle, obj[vehicle]])
+  }
+
+  index.sort(function (a, b) {
+    return b[1] - a[1]
+  })
+
+  const newIndex = []
+
+  for (let i = 0; i < number; i++) {
+    newIndex.push(index[i])
+  }
+
+  return newIndex
+}
+
 const subtitleArr = stringToArray(subtitle)
+
 const subtitleCounted = countWords(subtitleArr)
+
 const subtitleTF = tf(subtitleCounted)
+
 const wordsIDF = idf(words)
+
 const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 
-console.log(subtitleTFIDF)
+const sortedWords = sortable(subtitleTFIDF, 150)
+
+console.log(sortedWords)
