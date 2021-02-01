@@ -10,13 +10,14 @@ const files = fs.readdirSync(dir, { withFileTypes: true })
   .map(item => item.name)
 
 function stringToArray (str) {
-  return str.toLocaleLowerCase().match(/[a-zA-Z']+/g)
+  return str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
 }
 
 function removeWords (arr, number) {
   const index = []
   for (const word of arr) {
-    if (word.length > number) {
+    const replaced = word.replace(/[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g, '')
+    if (word.length > number && replaced !== "'") {
       index.push(word)
     }
   }
@@ -92,12 +93,25 @@ function sortable (obj, number) {
   return newIndex
 }
 
-async function translateArr (arr) {
+async function translateArr (arr, from, to) {
   const index = {}
+  let i = 1
+  let k = 1
   for (const obj of arr) {
-    let translated = await translate(obj[0], 'pt')
-    translated = (translated.text).toLocaleLowerCase()
-    index[obj[0]] = translated
+    let translated = await (translate(obj[0], { from: from, to: to }))
+    translated = (translated.text).toLocaleLowerCase().replace('.', '')
+
+    if (translated !== obj[0]) {
+      index[obj[0]] = translated
+    }
+
+    if (i === 10) {
+      console.log(`${i * k} words have been translated.`)
+      i = 1
+      k++
+    } else {
+      i++
+    }
   }
 
   return index
@@ -120,9 +134,9 @@ async function run () {
 
       const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 
-      const sortedWords = sortable(subtitleTFIDF, 5)
+      const sortedWords = sortable(subtitleTFIDF, 50)
 
-      const translatedWords = await translateArr(sortedWords)
+      const translatedWords = await translateArr(sortedWords, 'en', 'pt')
 
       console.log(translatedWords)
     }
