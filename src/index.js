@@ -1,6 +1,7 @@
 /* eslint-disable no-prototype-builtins */
 const fs = require('fs')
 const path = require('path')
+const translate = require('googletrans').default
 
 const words = require('./words/words.json')
 const dir = path.join(__dirname) + '/subtitle/'
@@ -91,26 +92,41 @@ function sortable (obj, number) {
   return newIndex
 }
 
-function run (subtitle, words) {
-  const subtitleArr = stringToArray(subtitle)
+async function translateArr (arr) {
+  const index = {}
+  for (const obj of arr) {
+    let translated = await translate(obj[0], 'pt')
+    translated = (translated.text).toLocaleLowerCase()
+    index[obj[0]] = translated
+  }
 
-  const newSubtitleArr = removeWords(subtitleArr, 3)
-
-  const subtitleCounted = countWords(newSubtitleArr)
-
-  const subtitleTF = tf(subtitleCounted)
-
-  const wordsIDF = idf(words)
-
-  const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
-
-  const sortedWords = sortable(subtitleTFIDF, 150)
-
-  return sortedWords
+  return index
 }
 
-for (const file of files) {
-  const subtitle = fs.readFileSync(dir + file, 'utf-8')
+async function run () {
+  for (const file of files) {
+    if (file !== '.gitkeep') {
+      const subtitle = fs.readFileSync(dir + file, 'utf-8')
 
-  console.log(run(subtitle, words))
+      const subtitleArr = stringToArray(subtitle)
+
+      const newSubtitleArr = removeWords(subtitleArr, 3)
+
+      const subtitleCounted = countWords(newSubtitleArr)
+
+      const subtitleTF = tf(subtitleCounted)
+
+      const wordsIDF = idf(words)
+
+      const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
+
+      const sortedWords = sortable(subtitleTFIDF, 5)
+
+      const translatedWords = await translateArr(sortedWords)
+
+      console.log(translatedWords)
+    }
+  }
 }
+
+run()
