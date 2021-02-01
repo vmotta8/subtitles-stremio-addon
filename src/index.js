@@ -1,7 +1,12 @@
 /* eslint-disable no-prototype-builtins */
 const fs = require('fs')
+const path = require('path')
+
 const words = require('./words/words.json')
-const subtitle = fs.readFileSync('/Users/vmotta8/repositories/subtitles-translator-ts/src/subtitle/Interstellar.2014.720p.BluRay.x264.YIFY.srt', 'utf-8')
+const dir = path.join(__dirname) + '/subtitle/'
+const files = fs.readdirSync(dir, { withFileTypes: true })
+  .filter(item => !item.isDirectory())
+  .map(item => item.name)
 
 function stringToArray (str) {
   return str.toLocaleLowerCase().match(/[a-zA-Z']+/g)
@@ -86,18 +91,26 @@ function sortable (obj, number) {
   return newIndex
 }
 
-const subtitleArr = stringToArray(subtitle)
+function run (subtitle, words) {
+  const subtitleArr = stringToArray(subtitle)
 
-const newSubtitleArr = removeWords(subtitleArr, 3)
+  const newSubtitleArr = removeWords(subtitleArr, 3)
 
-const subtitleCounted = countWords(newSubtitleArr)
+  const subtitleCounted = countWords(newSubtitleArr)
 
-const subtitleTF = tf(subtitleCounted)
+  const subtitleTF = tf(subtitleCounted)
 
-const wordsIDF = idf(words)
+  const wordsIDF = idf(words)
 
-const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
+  const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 
-const sortedWords = sortable(subtitleTFIDF, 150)
+  const sortedWords = sortable(subtitleTFIDF, 150)
 
-console.log(sortedWords)
+  return sortedWords
+}
+
+for (const file of files) {
+  const subtitle = fs.readFileSync(dir + file, 'utf-8')
+
+  console.log(run(subtitle, words))
+}
