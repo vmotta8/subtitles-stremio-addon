@@ -7,6 +7,17 @@ function stringToArray (str) {
   return str.toLocaleLowerCase().match(/[a-zA-Z']+/g)
 }
 
+function removeWords (arr, number) {
+  const index = []
+  for (const word of arr) {
+    if (word.length > number) {
+      index.push(word)
+    }
+  }
+
+  return index
+}
+
 function countWords (words) {
   const index = {}
 
@@ -48,9 +59,7 @@ function tfidf (TFObj, IDFObj) {
   const index = {}
 
   for (const word in TFObj) {
-    if (!(IDFObj[word])) {
-      //
-    } else {
+    if (IDFObj[word]) {
       index[word] = TFObj[word] * IDFObj[word]
     }
   }
@@ -79,7 +88,9 @@ function sortable (obj, number) {
 
 const subtitleArr = stringToArray(subtitle)
 
-const subtitleCounted = countWords(subtitleArr)
+const newSubtitleArr = removeWords(subtitleArr, 3)
+
+const subtitleCounted = countWords(newSubtitleArr)
 
 const subtitleTF = tf(subtitleCounted)
 
