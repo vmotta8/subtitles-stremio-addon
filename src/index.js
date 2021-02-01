@@ -1,6 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 const fs = require('fs')
-// const words = require('./words/words.json')
+const words = require('./words/words.json')
 const subtitle = fs.readFileSync('/Users/vmotta8/repositories/subtitles-translator-ts/src/subtitle/Interstellar.2014.720p.BluRay.x264.YIFY.srt', 'utf-8')
 
 function stringToArray (str) {
@@ -34,8 +34,17 @@ function tf (subtitleCounted) {
   return index
 }
 
+function idf (wordsCounted) {
+  const index = {}
+
+  for (const word in wordsCounted) {
+    index[word] = 15341 / wordsCounted[word].number_doc
+  }
+
+  return index
+}
+
 const subtitleArr = stringToArray(subtitle)
 const subtitleCounted = countWords(subtitleArr)
 const subtitleTF = tf(subtitleCounted)
-
-console.log(subtitleTF)
+const wordsIDF = idf(words)
