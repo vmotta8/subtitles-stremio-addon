@@ -60,12 +60,14 @@ function idf (wordsNumberOfOccurrencesObj, numberOfDocs) {
   return index
 }
 
-function tfidf (TFObj, IDFObj) {
+function tfidf (TFObj, IDFObj, dataset) {
   const index = {}
 
   for (const word in TFObj) {
     if (IDFObj[word]) {
       index[word] = TFObj[word] * IDFObj[word]
+    } else if (!dataset.index[word]) {
+      index[word] = TFObj[word] * dataset.numberOfDocs
     }
   }
 
@@ -132,7 +134,7 @@ async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 200) {
 
       const wordsIDF = idf(words.index, words.numberOfDocs)
 
-      const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
+      const subtitleTFIDF = tfidf(subtitleTF, wordsIDF, words)
 
       const sortedWordsTFIDF = sortable(subtitleTFIDF, numberOfWordsTranslated)
 
