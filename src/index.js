@@ -85,24 +85,23 @@ function sortable (obj, numberOfWords) {
   return index.slice(0, numberOfWords)
 }
 
-async function translateArrayOfWords (wordsArray, from, to) {
+async function translateArrayOfWords (wordsObj, from, to) {
+  const wordsArray = []
+  for (const obj of wordsObj) {
+    wordsArray.push(obj[0])
+  }
+
+  const wordsStr = wordsArray.join('. ')
+
+  const translated = await (translate(wordsStr, { from: from, to: to }))
+
+  const translatedArray = (translated.text).split('. ')
+
   const index = {}
-  let i = 1
-  let k = 1
-  for (const obj of wordsArray) {
-    let translated = await (translate(obj[0], { from: from, to: to }))
-    translated = (translated.text).toLocaleLowerCase().replace(/[.':%]+/g, '')
-
-    if (translated !== obj[0]) {
-      index[obj[0]] = translated
-    }
-
-    if (i === 10) {
-      console.log(`${i * k} words have been translated.`)
-      i = 1
-      k++
-    } else {
-      i++
+  for (let i = 0; i < wordsArray.length; i++) {
+    const translatedWord = translatedArray[i].toLocaleLowerCase().replace(/[.':%]+/g, '')
+    if (translatedWord !== wordsArray[i]) {
+      index[wordsArray[i]] = translatedWord
     }
   }
 
@@ -146,4 +145,4 @@ async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 200) {
   }
 }
 
-run(3, 300)
+run(3, 1000)
