@@ -1,31 +1,18 @@
 /* eslint-disable no-prototype-builtins */
 const fs = require('fs')
-const path = require('path')
-const translate = require('googletrans').default
+const tr = require('googletrans')
+const words = require('./words/format')
+const paths = require('./paths')
+const translate = tr.default
 
-const words = require('./words/words.json')
-const dir = path.join(__dirname) + '/subtitle/'
-const files = fs.readdirSync(dir, { withFileTypes: true })
-  .filter(item => !item.isDirectory())
-  .map(item => item.name)
-
-function formatWords (words) {
-  const index = {}
-  for (const word in words) {
-    index[word] = words[word].number_doc
-  }
-
-  return index
-}
-
-function stringToArray (str, number) {
-  const strArr = str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
+function stringToArray (str, wordsMinimumLength) {
+  const strWordsArray = str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
 
   const index = []
-  for (const word of strArr) {
+  for (const word of strWordsArray) {
     const replaced = word.replace(/[']+/g, '')
 
-    if (word.length > number && replaced === word) {
+    if (word.length > wordsMinimumLength && replaced === word) {
       index.push(word)
     }
   }
@@ -33,10 +20,10 @@ function stringToArray (str, number) {
   return index
 }
 
-function countWords (words) {
+function countWords (wordsArray) {
   const index = {}
 
-  words.forEach(function (word) {
+  wordsArray.forEach(function (word) {
     if (!(index.hasOwnProperty(word))) {
       index[word] = 0
     }
@@ -46,26 +33,26 @@ function countWords (words) {
   return index
 }
 
-function tf (subtitleCounted) {
+function tf (wordsCountedObj) {
   let sum = 0
-  for (const word in subtitleCounted) {
-    sum += parseFloat(subtitleCounted[word])
+  for (const word in wordsCountedObj) {
+    sum += wordsCountedObj[word]
   }
 
   const index = {}
-  for (const word in subtitleCounted) {
-    index[word] = (subtitleCounted[word] - 1) / sum
+  for (const word in wordsCountedObj) {
+    index[word] = (wordsCountedObj[word]) / sum
   }
 
   return index
 }
 
-function idf (wordsCounted) {
+function idf (wordsNumberOfOccurrencesObj, numberOfDocs) {
   const index = {}
 
-  for (const word in wordsCounted) {
-    const number = (15342) / (wordsCounted[word] + 1)
-    if (number > 5) {
+  for (const word in wordsNumberOfOccurrencesObj) {
+    const number = (numberOfDocs) / (wordsNumberOfOccurrencesObj[word])
+    if (number > 10) {
       index[word] = Math.log10(number)
     }
   }
@@ -85,7 +72,7 @@ function tfidf (TFObj, IDFObj) {
   return index
 }
 
-function sortable (obj, number) {
+function sortable (obj, numberOfWords) {
   const index = []
   for (const vehicle in obj) {
     index.push([vehicle, obj[vehicle]])
@@ -95,20 +82,14 @@ function sortable (obj, number) {
     return b[1] - a[1]
   })
 
-  const newIndex = []
-
-  for (let i = 0; i < number; i++) {
-    newIndex.push(index[i])
-  }
-
-  return newIndex
+  return index.slice(0, numberOfWords)
 }
 
-async function translateArr (arr, from, to) {
+async function translateArrayOfWords (wordsArray, from, to) {
   const index = {}
   let i = 1
   let k = 1
-  for (const obj of arr) {
+  for (const obj of wordsArray) {
     let translated = await (translate(obj[0], { from: from, to: to }))
     translated = (translated.text).toLocaleLowerCase().replace(/[.':%]+/g, '')
 
@@ -128,46 +109,41 @@ async function translateArr (arr, from, to) {
   return index
 }
 
-function addWords (subtitle, words) {
+function addTranslatedWordsToSubtitle (subtitle, translatedWords) {
   subtitle = subtitle.toLocaleLowerCase()
 
-  for (const word in words) {
+  for (const word in translatedWords) {
     const reg = new RegExp(` ${word} `, 'g')
-    subtitle = subtitle.replace(reg, ` ${word}(${words[word]}) `)
+    subtitle = subtitle.replace(reg, ` ${word}(${translatedWords[word]}) `)
   }
 
   return subtitle
 }
 
-async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
-  for (const file of files) {
+async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 200) {
+  for (const file of paths.subtitles) {
     if (file.substr(file.length - 4) === '.srt') {
-      const formatedWords = formatWords(words)
+      const subtitle = fs.readFileSync(paths.subtitlesDir + file, 'utf-8')
 
-      const subtitle = fs.readFileSync(dir + file, 'utf-8')
+      const subtitleWordsArray = stringToArray(subtitle, wordsMinimumLength)
 
-      const subtitleArr = stringToArray(subtitle, removeWordsSmallerThan)
+      const subtitleWordsCounted = countWords(subtitleWordsArray)
 
-      const subtitleCounted = countWords(subtitleArr)
+      const subtitleTF = tf(subtitleWordsCounted)
 
-      const subtitleTF = tf(subtitleCounted)
-
-      const wordsIDF = idf(formatedWords)
+      const wordsIDF = idf(words.index, words.numberOfDocs)
 
       const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 
-      const sortedWords = sortable(subtitleTFIDF, amountOfWordsTranslated)
+      const sortedWordsTFIDF = sortable(subtitleTFIDF, numberOfWordsTranslated)
 
-      const translatedWords = await translateArr(sortedWords, 'en', 'pt')
+      const translatedWords = await translateArrayOfWords(sortedWordsTFIDF, 'en', 'pt')
 
-      const newSubtitle = addWords(subtitle, translatedWords)
+      const newSubtitle = addTranslatedWordsToSubtitle(subtitle, translatedWords)
 
-      fs.writeFileSync(`${dir}new/NEW-${file}`, newSubtitle)
+      fs.writeFileSync(`${paths.newSubtitlesDir}NEW-${file}`, newSubtitle)
     }
   }
 }
 
-const removeWordsSmallerThan = 3
-const amountOfWordsTranslated = 300
-
-run(removeWordsSmallerThan, amountOfWordsTranslated)
+run(3, 300)
