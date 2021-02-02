@@ -9,15 +9,14 @@ const files = fs.readdirSync(dir, { withFileTypes: true })
   .filter(item => !item.isDirectory())
   .map(item => item.name)
 
-function stringToArray (str) {
-  return str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
-}
+function stringToArray (str, number) {
+  const strArr = str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
 
-function removeWords (arr, number) {
   const index = []
-  for (const word of arr) {
-    const replaced = word.replace(/[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g, '')
-    if (word.length > number && replaced !== "'") {
+  for (const word of strArr) {
+    const replaced = word.replace(/[']+/g, '')
+
+    if (word.length > number && replaced === word) {
       index.push(word)
     }
   }
@@ -105,6 +104,10 @@ async function translateArr (arr, from, to) {
       index[obj[0]] = translated
     }
 
+    console.log(obj)
+    console.log(translated)
+    console.log(index[obj[0]])
+
     if (i === 10) {
       console.log(`${i * k} words have been translated.`)
       i = 1
@@ -128,16 +131,14 @@ function addWords (subtitle, words) {
   return subtitle
 }
 
-async function run () {
+async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
   for (const file of files) {
     if (file.substr(file.length - 4) === '.srt') {
       const subtitle = fs.readFileSync(dir + file, 'utf-8')
 
-      const subtitleArr = stringToArray(subtitle)
+      const subtitleArr = stringToArray(subtitle, removeWordsSmallerThan)
 
-      const newSubtitleArr = removeWords(subtitleArr, 3)
-
-      const subtitleCounted = countWords(newSubtitleArr)
+      const subtitleCounted = countWords(subtitleArr)
 
       const subtitleTF = tf(subtitleCounted)
 
@@ -145,7 +146,7 @@ async function run () {
 
       const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 
-      const sortedWords = sortable(subtitleTFIDF, 50)
+      const sortedWords = sortable(subtitleTFIDF, amountOfWordsTranslated)
 
       const translatedWords = await translateArr(sortedWords, 'en', 'pt')
 
@@ -156,4 +157,7 @@ async function run () {
   }
 }
 
-run()
+const removeWordsSmallerThan = 3
+const amountOfWordsTranslated = 100
+
+run(removeWordsSmallerThan, amountOfWordsTranslated)
