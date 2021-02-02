@@ -104,10 +104,6 @@ async function translateArr (arr, from, to) {
       index[obj[0]] = translated
     }
 
-    console.log(obj)
-    console.log(translated)
-    console.log(index[obj[0]])
-
     if (i === 10) {
       console.log(`${i * k} words have been translated.`)
       i = 1
@@ -158,6 +154,6 @@ async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
 }
 
 const removeWordsSmallerThan = 3
-const amountOfWordsTranslated = 100
+const amountOfWordsTranslated = 200
 
 run(removeWordsSmallerThan, amountOfWordsTranslated)
