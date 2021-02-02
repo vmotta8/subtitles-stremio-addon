@@ -117,9 +117,20 @@ async function translateArr (arr, from, to) {
   return index
 }
 
+function addWords (subtitle, words) {
+  subtitle = subtitle.toLocaleLowerCase()
+
+  for (const word in words) {
+    const reg = new RegExp(word, 'g')
+    subtitle = subtitle.replace(reg, `${word}(${words[word]})`)
+  }
+
+  return subtitle
+}
+
 async function run () {
   for (const file of files) {
-    if (file !== '.gitkeep') {
+    if (file.substr(file.length - 4) === '.srt') {
       const subtitle = fs.readFileSync(dir + file, 'utf-8')
 
       const subtitleArr = stringToArray(subtitle)
@@ -138,7 +149,9 @@ async function run () {
 
       const translatedWords = await translateArr(sortedWords, 'en', 'pt')
 
-      console.log(translatedWords)
+      const newSubtitle = addWords(subtitle, translatedWords)
+
+      fs.writeFileSync(`${dir}new/NEW-${file}`, newSubtitle)
     }
   }
 }
