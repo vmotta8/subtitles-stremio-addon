@@ -9,6 +9,15 @@ const files = fs.readdirSync(dir, { withFileTypes: true })
   .filter(item => !item.isDirectory())
   .map(item => item.name)
 
+function formatWords (words) {
+  const index = {}
+  for (const word in words) {
+    index[word] = words[word].number_doc
+  }
+
+  return index
+}
+
 function stringToArray (str, number) {
   const strArr = str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
 
@@ -45,7 +54,7 @@ function tf (subtitleCounted) {
 
   const index = {}
   for (const word in subtitleCounted) {
-    index[word] = subtitleCounted[word] / sum
+    index[word] = (subtitleCounted[word] - 1) / sum
   }
 
   return index
@@ -55,7 +64,10 @@ function idf (wordsCounted) {
   const index = {}
 
   for (const word in wordsCounted) {
-    index[word] = Math.log10(15341 / wordsCounted[word].number_doc)
+    const number = (15342) / (wordsCounted[word] + 1)
+    if (number > 5) {
+      index[word] = Math.log10(number)
+    }
   }
 
   return index
@@ -130,6 +142,8 @@ function addWords (subtitle, words) {
 async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
   for (const file of files) {
     if (file.substr(file.length - 4) === '.srt') {
+      const formatedWords = formatWords(words)
+
       const subtitle = fs.readFileSync(dir + file, 'utf-8')
 
       const subtitleArr = stringToArray(subtitle, removeWordsSmallerThan)
@@ -138,7 +152,7 @@ async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
 
       const subtitleTF = tf(subtitleCounted)
 
-      const wordsIDF = idf(words)
+      const wordsIDF = idf(formatedWords)
 
       const subtitleTFIDF = tfidf(subtitleTF, wordsIDF)
 

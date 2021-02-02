@@ -40,7 +40,7 @@ is top secret,
 
 11
 00:00:16,999 --> 00:00:19,938
-a conspiracy bigger than all of us.
+a conspiracy(conspiração) bigger than all of us.
 
 12
 00:00:20,499 --> 00:00:22,462
@@ -216,7 +216,7 @@ the one in control.
 
 52
 00:03:02,799 --> 00:03:04,799
-i must ask you to kindly leave.
+i must ask you to kindly(gentilmente) leave.
 
 53
 00:03:04,800 --> 00:03:07,734
@@ -390,7 +390,7 @@ no matter how much i give.
 
 94
 00:05:28,168 --> 00:05:30,699
-you will inform(informar) the police anyway.
+you will inform the police anyway.
 
 95
 00:05:30,700 --> 00:05:32,699
@@ -445,7 +445,7 @@ wipe all the data.
 
 107
 00:06:02,247 --> 00:06:05,738
-so i made sure to include the current(atual) time
+so i made sure to include the current time
 
 108
 00:06:05,739 --> 00:06:08,988
@@ -470,7 +470,7 @@ were wrong about, rohit.
 
 113
 00:06:17,679 --> 00:06:20,443
-i don't give a shit(merda) about money.
+i don't give a shit about money.
 
 114
 00:06:32,734 --> 00:06:34,730
@@ -519,7 +519,7 @@ vigilante hacker by night.
 124
 00:07:31,522 --> 00:07:34,526
 by day, just a regular
-cyber security(segurança) engineer,
+cyber security engineer,
 
 125
 00:07:35,245 --> 00:07:39,132
@@ -687,7 +687,7 @@ liked most of the people,
 
 162
 00:09:33,700 --> 00:09:35,590
-but our business, a cyber security(segurança) firm
+but our business, a cyber security firm
 
 163
 00:09:35,591 --> 00:09:39,334
@@ -705,7 +705,7 @@ i'm sorry. i'm just in a bad mood.
 166
 00:09:52,499 --> 00:09:54,955
 i'm late on my last two
-student loan(empréstimo) payments,
+student loan payments,
 
 167
 00:09:54,956 --> 00:09:57,699
@@ -834,7 +834,7 @@ no linkedin, no facebook, nothing.
 
 196
 00:11:29,304 --> 00:11:31,102
-something about him bugs me,
+something about him bugs(insetos) me,
 
 197
 00:11:31,103 --> 00:11:32,745
@@ -931,7 +931,7 @@ social media faking(fingindo) as intimacy.
 
 218
 00:12:44,008 --> 00:12:47,010
-or is it that we voted for this?
+or is it that we voted(votado) for this?
 
 219
 00:12:47,011 --> 00:12:49,245
@@ -1136,7 +1136,7 @@ on good terms.
 265
 00:15:34,384 --> 00:15:38,041
 i... i just... i feel like things
-have been awkward(desajeitado) between us.
+have been awkward between us.
 
 266
 00:15:38,042 --> 00:15:40,566
@@ -1145,7 +1145,7 @@ have been awkward(desajeitado) between us.
 
 267
 00:15:40,567 --> 00:15:43,382
-with it being awkward(desajeitado) between us.
+with it being awkward between us.
 
 268
 00:15:43,383 --> 00:15:47,664
@@ -1334,7 +1334,7 @@ that's all my mind hears,
 
 310
 00:17:46,936 --> 00:17:49,042
-sees, or reads when
+sees, or reads(lê) when
 they pop up in my world.
 
 311
@@ -1376,7 +1376,7 @@ on your account.
 
 319
 00:18:10,199 --> 00:18:11,889
-even though he's the head technology(tecnologia) guy
+even though he's the head technology guy
 
 320
 00:18:11,890 --> 00:18:15,286
@@ -1398,7 +1398,7 @@ he's not a techie. he's a moron.
 
 324
 00:18:24,339 --> 00:18:27,824
-an arrogant moron. the worst kind.
+an arrogant(arrogante) moron. the worst kind.
 
 325
 00:18:33,402 --> 00:18:36,037
@@ -1479,11 +1479,11 @@ sometimes i dream of saving the world.
 
 343
 00:19:38,899 --> 00:19:42,122
-saving everyone from the invisible(invisível) hand,
+saving everyone from the invisible hand,
 
 344
 00:19:42,123 --> 00:19:44,899
-one that brands(marcas) us with an employee(empregado) badge.
+one that brands(marcas) us with an employee badge.
 
 345
 00:19:47,899 --> 00:19:50,935
@@ -1568,7 +1568,7 @@ just builds(constrói) up your tolerance.
 
 364
 00:21:03,800 --> 00:21:06,899
-i check every pill i get for purity.
+i check every pill(comprimido) i get for purity.
 
 365
 00:21:07,589 --> 00:21:09,899
@@ -1746,7 +1746,7 @@ you're there? it's 3:00 in the morning.
 
 406
 00:25:26,074 --> 00:25:29,159
-they attacked evil(mal) corp servers
+they attacked evil corp servers
 again, but it's bad this time.
 
 407
@@ -1761,7 +1761,7 @@ it's a ddos attack.
 409
 00:25:34,496 --> 00:25:38,584
 - is he talking to their tech department?
-- he's online(conectados) with them, but so far nothing.
+- he's online with them, but so far nothing.
 
 410
 00:25:40,299 --> 00:25:43,031
@@ -1790,7 +1790,7 @@ i'll be right there.
 
 416
 00:26:07,108 --> 00:26:11,926
-yeah, well, an hourin evil(mal) corp time is
+yeah, well, an hourin evil corp time is
 like $13 million in revenue, approximately.
 
 417
@@ -1819,7 +1819,7 @@ elliot. this is bad.
 
 423
 00:26:25,287 --> 00:26:26,868
-worst ddos attack(ataque) i've ever seen.
+worst ddos attack i've ever seen.
 
 424
 00:26:26,869 --> 00:26:29,441
@@ -1839,7 +1839,7 @@ but they're not coming back up.
 427
 00:26:34,299 --> 00:26:37,315
 dude, someone is straight up fingerblasting
-their entire network(rede) right now.
+their entire network right now.
 
 428
 00:26:54,513 --> 00:26:56,982
@@ -1857,7 +1857,7 @@ what's the status update?
 431
 00:27:09,419 --> 00:27:11,923
 is here. i thought we
-set up security(segurança) protocols
+set up security protocols
 
 432
 00:27:11,924 --> 00:27:15,319
@@ -1865,7 +1865,7 @@ so that this doesn't happen.
 
 433
 00:27:15,644 --> 00:27:17,688
-- where's the attack(ataque) coming from?
+- where's the attack coming from?
 - everywhere, obviously.
 
 434
@@ -1961,7 +1961,7 @@ which is what they wanted.
 
 454
 00:28:07,486 --> 00:28:10,691
-by defending ourselves, we ended
+by defending(defender) ourselves, we ended
 up spreadingthe(espalhando o) virus(vírus) everywhere.
 
 455
@@ -2003,7 +2003,7 @@ we're gonna need the jet.
 
 463
 00:28:45,200 --> 00:28:47,045
-they're booting(inicialização) the network(rede) back up.
+they're booting(inicialização) the network back up.
 
 464
 00:28:47,046 --> 00:28:48,867
@@ -2030,7 +2030,7 @@ what's the eta before it hits this server?
 
 469
 00:29:04,499 --> 00:29:06,499
-the backup(cópia de segurança) server(servidor) up and running?
+the backup server(servidor) up and running?
 
 470
 00:29:06,500 --> 00:29:09,273
@@ -2222,7 +2222,7 @@ and i don't know if i can blame them.
 513
 00:32:34,799 --> 00:32:37,633
 they could have called
-their other security(segurança) teams.
+their other security teams.
 
 514
 00:32:37,634 --> 00:32:39,584
@@ -2395,7 +2395,7 @@ what do you want from me?
 
 553
 00:36:05,599 --> 00:36:08,599
-my dad was a petty thief.
+my dad was a petty(mesquinho) thief.
 
 554
 00:36:08,600 --> 00:36:10,599
@@ -2440,7 +2440,7 @@ i steal, son, but i don't get caught.
 
 563
 00:36:40,600 --> 00:36:43,599
-that's my contract(contrato) with society.
+that's my contract with society.
 
 564
 00:36:43,600 --> 00:36:45,599
@@ -2454,11 +2454,11 @@ i've earned the money."
 
 566
 00:36:54,008 --> 00:36:56,318
-i respected that, man.
+i respected(respeitado) that, man.
 
 567
 00:36:58,599 --> 00:37:02,835
-i thought that shit(merda) was
+i thought that shit was
 cool as a little kid.
 
 568
@@ -2563,7 +2563,7 @@ our encryption(criptografia) is the real world.
 590
 00:39:20,663 --> 00:39:23,583
 we come and go, work on
-the project(projeto) when we can.
+the project when we can.
 
 591
 00:39:24,599 --> 00:39:26,599
@@ -2577,7 +2577,7 @@ if they pass, they join us.
 593
 00:39:31,799 --> 00:39:34,484
 - if they fail...
-- the ddos attack(ataque) last night,
+- the ddos attack last night,
 
 594
 00:39:36,149 --> 00:39:38,369
@@ -3031,7 +3031,7 @@ the single biggest incident
 
 696
 00:46:39,289 --> 00:46:43,350
-of wealth redistribution(redistribuição) in history.
+of wealth(riqueza) redistribution(redistribuição) in history.
 
 697
 00:46:48,947 --> 00:46:53,208
@@ -3086,7 +3086,7 @@ even if they don't believe he did it,
 709
 00:47:25,816 --> 00:47:29,211
 they'll believe he gave
-someone access(acesso) to it.
+someone access to it.
 
 710
 00:47:29,213 --> 00:47:30,777
@@ -3233,7 +3233,7 @@ yes. anyway, he arrived at the office
 743
 00:51:44,608 --> 00:51:46,239
 so that's almost a half hour
-after the initial breach.
+after the initial(inicial) breach.
 
 744
 00:51:46,240 --> 00:51:48,079
@@ -3349,7 +3349,7 @@ no news, no arrests, no revolution.
 
 769
 00:53:54,858 --> 00:53:58,920
-no fbi, colby, evil(mal) corp.
+no fbi, colby, evil corp.
 
 770
 00:54:01,697 --> 00:54:05,005
@@ -3374,11 +3374,11 @@ i need to take my mind off things.
 
 775
 00:54:41,671 --> 00:54:44,115
-from bank of e security(segurança) fraud department.
+from bank of e security fraud department.
 
 776
 00:54:44,117 --> 00:54:46,013
-unfortunately i have to inform(informar) you
+unfortunately i have to inform you
 
 777
 00:54:46,015 --> 00:54:47,812
@@ -3401,7 +3401,7 @@ i need to verify(verificar) some information.
 781
 00:54:58,123 --> 00:55:00,292
 - _
-- great. and your security(segurança) question,
+- great. and your security question,
 
 782
 00:55:00,293 --> 00:55:03,693
@@ -3411,7 +3411,7 @@ i need to verify(verificar) some information.
 783
 00:55:03,694 --> 00:55:05,298
 i don't remember this
-being a security(segurança) question.
+being a security question.
 
 784
 00:55:05,299 --> 00:55:08,882
@@ -3702,7 +3702,7 @@ i think angela blames(culpa) me for what happened
 
 851
 00:59:17,554 --> 00:59:20,016
-at the evil(mal) corp meeting.
+at the evil corp meeting.
 
 852
 00:59:20,018 --> 00:59:22,348
@@ -3832,16 +3832,16 @@ colby either used hacking groups
 
 882
 01:01:25,111 --> 01:01:27,027
-or worked in conjunction(conjunção) with them
+or worked in conjunction with them
 
 883
 01:01:27,028 --> 01:01:30,373
-to pressure evil(mal) corp during
-his contract(contrato) negotiations.
+to pressure evil corp during
+his contract negotiations.
 
 884
 01:01:30,375 --> 01:01:33,203
-after a long and exhaustive(exaustivo) investigation,
+after a long and exhaustive investigation,
 
 885
 01:01:33,205 --> 01:01:37,434
@@ -3897,7 +3897,7 @@ you're seeing this, too.
 
 897
 01:04:14,052 --> 01:04:18,307
-- synced(sincronizado) and corrected by sk�ad -
+- synced and corrected by sk�ad -
 
 9999
 00:00:0,500 --> 00:00:2,00
