@@ -98,7 +98,7 @@ async function translateArr (arr, from, to) {
   let k = 1
   for (const obj of arr) {
     let translated = await (translate(obj[0], { from: from, to: to }))
-    translated = (translated.text).toLocaleLowerCase().replace('.', '')
+    translated = (translated.text).toLocaleLowerCase().replace(/[.':%]+/g, '')
 
     if (translated !== obj[0]) {
       index[obj[0]] = translated
@@ -120,8 +120,8 @@ function addWords (subtitle, words) {
   subtitle = subtitle.toLocaleLowerCase()
 
   for (const word in words) {
-    const reg = new RegExp(word, 'g')
-    subtitle = subtitle.replace(reg, `${word}(${words[word]})`)
+    const reg = new RegExp(` ${word} `, 'g')
+    subtitle = subtitle.replace(reg, ` ${word}(${words[word]}) `)
   }
 
   return subtitle
@@ -154,6 +154,6 @@ async function run (removeWordsSmallerThan, amountOfWordsTranslated) {
 }
 
 const removeWordsSmallerThan = 3
-const amountOfWordsTranslated = 200
+const amountOfWordsTranslated = 300
 
 run(removeWordsSmallerThan, amountOfWordsTranslated)
