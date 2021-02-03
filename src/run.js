@@ -3,7 +3,7 @@ const words = require('./words/format')
 const paths = require('./paths')
 const functions = require('./index')
 
-async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 200) {
+async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 300) {
   for (const file of paths.subtitles) {
     if (file.substr(file.length - 4) === '.srt') {
       const subtitle = fs.readFileSync(paths.subtitlesDir + file, 'utf-8')
@@ -29,4 +29,4 @@ async function run (wordsMinimumLength = 3, numberOfWordsTranslated = 200) {
   }
 }
 
-run(3, 1000)
+run()
