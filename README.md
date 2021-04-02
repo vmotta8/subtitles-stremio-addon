@@ -34,3 +34,16 @@ Para instalar basta seguir os passos do [tutorial de instalação que há na doc
   - Quando um filme é aberto o programa coleta o Id.
   - Com esse Id o programa busca legendas para o filme usando a api do [Opensubtitles](https://www.opensubtitles.org/).
   - O programa usa a legenda inglês coletada para gerar uma nova que será exibida com algumas palavras traduzidas.
+
+### Autor
+---
+
+<a href="https://blog.rocketseat.com.br/author/thiago/">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60989975?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Vinicius Motta</b></sub></a> <a href="https://blog.rocketseat.com.br/author/thiago//" title="Rocketseat">🤘</a>
+
+Feito por Vinicius Motta 👋 Entre em contato!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Vinicius-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/vmotta8/)](https://www.linkedin.com/in/vmotta8/)
+[![Gmail Badge](https://img.shields.io/badge/-viniciusmotta8@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:viniciusmotta8@gmail.com)](mailto:viniciusmotta8@gmail.com)
