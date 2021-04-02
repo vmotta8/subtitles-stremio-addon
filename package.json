@@ -25,6 +25,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "googletrans": "^1.0.2",
-    "opensubtitles-api": "^5.1.2"
+    "opensubtitles-api": "^5.1.2",
+    "stremio-addon-sdk": "^1.6.5"
   }
 }
