@@ -53,6 +53,21 @@ async function generateSubtitle (imdbId) {
   const translatedWords = await functions.translateArrayOfWords(sortedWordsTFIDF, 'en', 'pt')
   const newSubtitle = functions.addTranslatedWordsToSubtitle(subtitle, translatedWords)
   fs.writeFileSync(`${path.join(process.cwd(), 'public')}/subtitle.srt`, newSubtitle)
+
+  return [
+    {
+      url: subtitles.en.utf8,
+      lang: 'English'
+    },
+    {
+      url: subtitles.pb.utf8,
+      lang: 'Portguese Br'
+    },
+    {
+      url: 'http://127.0.0.1:7000/public/subtitle.srt',
+      lang: 'Eng PtBr'
+    }
+  ]
 }
 
-generateSubtitle('tt6394270')
+module.exports = { generateSubtitle }
