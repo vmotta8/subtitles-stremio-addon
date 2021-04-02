@@ -1,5 +1,5 @@
 {
-  "name": "subtitles-translator-ts",
+  "name": "subtitles-stremio-addon",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
