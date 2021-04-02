@@ -98,7 +98,7 @@ module.exports = {
     const translatedArray = (translated.text).split('. ')
 
     const index = {}
-    for (let i = 0; i < wordsArray.length; i++) {
+    for (let i = 0; i < translatedArray.length; i++) {
       const translatedWord = translatedArray[i].toLocaleLowerCase().replace(/[.':%]+/g, '')
       if (translatedWord !== wordsArray[i]) {
         index[wordsArray[i]] = translatedWord
