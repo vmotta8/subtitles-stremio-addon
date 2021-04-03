@@ -48,7 +48,7 @@ async function generateSubtitle (imdbId) {
   const subtitleTF = functions.tf(subtitleWordsCounted)
   const wordsIDF = functions.idf(words.index, words.numberOfDocs)
   const subtitleTFIDF = functions.tfidf(subtitleTF, wordsIDF, words)
-  const sortedWordsTFIDF = functions.sortable(subtitleTFIDF, 200)
+  const sortedWordsTFIDF = functions.sortable(subtitleTFIDF, 100)
 
   const translatedWords = await functions.translateArrayOfWords(sortedWordsTFIDF, 'en', 'pt')
   const newSubtitle = functions.addTranslatedWordsToSubtitle(subtitle, translatedWords)
