@@ -23,7 +23,9 @@
     "jest": "^26.6.3"
   },
   "dependencies": {
+    "@google-cloud/translate": "^6.1.0",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "googletrans": "^1.0.2",
     "opensubtitles-api": "^5.1.2",
     "stremio-addon-sdk": "^1.6.5"
