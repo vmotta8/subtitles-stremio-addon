@@ -4,13 +4,14 @@ const translate = tr.default
 
 module.exports = {
   stringToArray: function (str, wordsMinimumLength) {
-    const strWordsArray = str.toLocaleLowerCase().match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
+    const strWordsArray = str.match(/[a-zA-Z'áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+/g)
 
     const index = []
     for (const word of strWordsArray) {
       const replaced = word.replace(/[']+/g, '')
+      const lower = word.toLocaleLowerCase()
 
-      if (word.length > wordsMinimumLength && replaced === word) {
+      if (word.length > wordsMinimumLength && replaced === word && word === lower) {
         index.push(word)
       }
     }
@@ -109,8 +110,6 @@ module.exports = {
   },
 
   addTranslatedWordsToSubtitle: function (subtitle, translatedWords) {
-    subtitle = subtitle.toLocaleLowerCase()
-
     for (const word in translatedWords) {
       const reg = new RegExp(` ${word} `, 'g')
       subtitle = subtitle.replace(reg, ` ${word}(${translatedWords[word]}) `)
