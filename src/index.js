@@ -1,6 +1,15 @@
 /* eslint-disable no-prototype-builtins */
+
 const tr = require('googletrans')
 const translate = tr.default
+
+// const { Translate } = require('@google-cloud/translate').v2
+// require('dotenv').config()
+// const CREDENTIALS = JSON.parse(process.env.CREDENTIALS)
+// const translate = new Translate({
+//   credentials: CREDENTIALS,
+//   projectId: CREDENTIALS.project_id
+// })
 
 module.exports = {
   stringToArray: function (str, wordsMinimumLength) {
@@ -95,8 +104,10 @@ module.exports = {
     const wordsStr = wordsArray.join('. ')
 
     const translated = await (translate(wordsStr, { from: from, to: to }))
-
     const translatedArray = (translated.text).split('. ')
+
+    // const translated = await (translate.translate(wordsStr, { from: from, to: to }))
+    // const translatedArray = (translated[0]).split('. ')
 
     const index = {}
     for (let i = 0; i < translatedArray.length; i++) {
