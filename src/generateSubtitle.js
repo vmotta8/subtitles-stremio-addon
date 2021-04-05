@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+require('dotenv').config()
 const OS = require('opensubtitles-api')
 const fs = require('fs')
 const path = require('path')
@@ -64,7 +65,7 @@ async function generateSubtitle (imdbId) {
       lang: 'Portguese Br'
     },
     {
-      url: 'http://127.0.0.1:7000/public/subtitle.srt',
+      url: `${process.env.HOST}:${process.env.PORT}/public/subtitle.srt`,
       lang: 'Eng PtBr'
     }
   ]
