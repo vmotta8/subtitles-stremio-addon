@@ -17,8 +17,13 @@ const builder = new addonBuilder({
 })
 
 builder.defineSubtitlesHandler(async function (args) {
-  const subtitles = await generateSubtitle(args.id)
-  return Promise.resolve({ subtitles: subtitles })
+  try {
+    const subtitles = await generateSubtitle(args.id)
+    return Promise.resolve({ subtitles: subtitles })
+  } catch (err) {
+    console.log(err)
+    return Promise.resolve({ subtitles: [] })
+  }
 })
 
 serveHTTP(builder.getInterface(), {
