@@ -7,7 +7,6 @@ describe('string to array', () => {
     const arr = functions.stringToArray(str, 3)
     expect(arr).toEqual([
       'lame',
-      'maybe',
       'should',
       'give',
       'name',
