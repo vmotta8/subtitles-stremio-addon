@@ -22,7 +22,7 @@ builder.defineSubtitlesHandler(async function (args) {
 })
 
 serveHTTP(builder.getInterface(), {
-  port: 7000,
+  port: process.env.PORT || 7000,
   static: '/public'
 })
 
