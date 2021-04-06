@@ -18,11 +18,10 @@ const builder = new addonBuilder({
 })
 
 builder.defineSubtitlesHandler(async function (args) {
-  try {
+  if ((args.id).slice(0, 2) === 'tt') {
     const subtitles = await generateSubtitle(args.id)
     return Promise.resolve({ subtitles: subtitles })
-  } catch (err) {
-    console.log(err)
+  } else {
     return Promise.resolve({ subtitles: [] })
   }
 })
