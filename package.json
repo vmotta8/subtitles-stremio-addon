@@ -6,7 +6,8 @@
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test-unit": "npm test -- --watch -c jest-unit.config.js",
     "test-integration": "npm test -- --watch -c jest-integration.config.js",
-    "index": "node src/run.js"
+    "index": "node src/run.js",
+    "start": "node addon.js"
   },
   "repository": "https://github.com/vmotta8/subtitles-translator-ts.git",
   "author": "Vinicius Motta <viniciusmotta8@gmail.com>",
