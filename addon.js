@@ -5,9 +5,10 @@ const { generateSubtitle } = require('./src/generateSubtitle')
 
 const builder = new addonBuilder({
   id: 'org.subtitletranslateaddon',
-  version: '1.0.0',
+  version: '1.0.1',
 
   name: 'English Portuguese Br Subtitles',
+  description: 'Best English, Portuguese Br and Translated Subtitles to your movie',
 
   types: ['movie'],
   catalogs: [],
