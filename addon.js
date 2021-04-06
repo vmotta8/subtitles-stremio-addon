@@ -28,8 +28,7 @@ builder.defineSubtitlesHandler(async function (args) {
 })
 
 serveHTTP(builder.getInterface(), {
-  port: process.env.PORT || 7000,
-  static: '/public'
+  port: process.env.PORT || 7000
 })
 
 // If you want this addon to appear in the addon catalogs, call .publishToCentral() with the publically available URL to your manifest
