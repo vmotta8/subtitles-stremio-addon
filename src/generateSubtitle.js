@@ -7,6 +7,8 @@ const axios = require('axios')
 const functions = require('./index')
 const ww = require('../public/words.json')
 
+const langcodes = ['en', 'pb', 'pt', 'zt', 'ja', 'ar', 'es', 'ru']
+
 async function openSubtitles (imdbId) {
   const OpenSubtitles = new OS({
     useragent: 'UserAgent',
@@ -15,12 +17,25 @@ async function openSubtitles (imdbId) {
 
   const subtitles = await OpenSubtitles.search({
     extensions: ['srt'],
-    limit: '1',
+    limit: '3',
     imdbid: imdbId
   })
 
-  const obj = { en: subtitles.en[0], pb: subtitles.pb[0] }
-  return obj
+  const all = []
+  const sub = {}
+  for (const langcode in subtitles) {
+    if (langcodes.includes(langcode)) {
+      for (const data of subtitles[langcode]) {
+        sub.lang = (data.lang)
+        sub.url = data.utf8
+        const temp = JSON.stringify(sub)
+        all.push(JSON.parse(temp))
+      }
+      // all.push({ langcode: langcode, lang: subtitles[langcode][0].lang })
+    }
+  }
+
+  return all
 }
 
 async function format (words) {
@@ -55,16 +70,7 @@ async function generateSubtitle (imdbId) {
   // const newSubtitle = functions.addTranslatedWordsToSubtitle(subtitle, translatedWords)
   // fs.writeFileSync(`${path.join(process.cwd(), 'public')}/subtitle.srt`, newSubtitle)
 
-  return [
-    {
-      url: subtitles.en.utf8,
-      lang: 'ENGLISH'
-    },
-    {
-      url: subtitles.pb.utf8,
-      lang: 'PORTUGUESE BR'
-    }
-  ]
+  return subtitles
 }
 
 module.exports = { generateSubtitle }
