@@ -19,7 +19,6 @@ const builder = new addonBuilder({
 })
 
 builder.defineSubtitlesHandler(async function (args) {
-  console.log(JSON.stringify(args))
   if ((args.id).slice(0, 2) === 'tt') {
     const subtitles = await generateSubtitle(args.id)
     return Promise.resolve({ subtitles: subtitles })
