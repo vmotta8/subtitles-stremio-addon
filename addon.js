@@ -7,6 +7,7 @@ const builder = new addonBuilder({
   id: 'org.subtitletranslateaddon',
   version: '1.0.3',
 
+  logo: 'https://raw.githubusercontent.com/vmotta8/subtitles-stremio-addon/master/public/logo.png',
   name: 'English Portuguese Br Subtitles',
   description: 'Best English, Portuguese Br, Translated Subtitles and others to your movie',
 
