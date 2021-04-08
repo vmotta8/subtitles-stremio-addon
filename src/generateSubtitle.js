@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config()
 const OS = require('opensubtitles-api')
-const axios = require('axios')
 
 const langcodes = ['en', 'pb', 'pt', 'zt', 'ja', 'ar', 'es', 'ru']
 
@@ -31,7 +30,7 @@ async function openSubtitles (imdbId) {
   }
 
   let englishSubtitle
-  if (subtitles.en[0].utf8) {
+  if (subtitles.en) {
     englishSubtitle = subtitles.en[0].utf8
     englishSubtitle = englishSubtitle.split('/').join('%2F')
   } else {
