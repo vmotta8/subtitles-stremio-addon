@@ -42,7 +42,7 @@ async function openSubtitles (imdbId) {
 
 async function generateSubtitle (imdbId) {
   const subtitles = await openSubtitles(imdbId)
-  // const url = `${process.env.TRANSLATE_URL}/${subtitles.englishSubtitle}`
+  const url = `${process.env.TRANSLATE_URL}/${subtitles.englishSubtitle}`
 
   // const translated = {
   //   url: url,
@@ -50,6 +50,10 @@ async function generateSubtitle (imdbId) {
   // }
 
   // subtitles.all.push(translated)
+
+  setTimeout(() => {
+    console.log(url)
+  }, 3000)
 
   return subtitles.all
 }
