@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config()
 const OS = require('opensubtitles-api')
+const axios = require('axios')
 
 const langcodes = ['en', 'pb', 'pt', 'zt', 'ja', 'ar', 'es', 'ru']
 
@@ -51,9 +52,7 @@ async function generateSubtitle (imdbId) {
 
   subtitles.all.push(translated)
 
-  setTimeout(() => {
-    console.log(translated)
-  }, 4000)
+  await axios.get(url)
 
   return subtitles.all
 }
