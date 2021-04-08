@@ -51,9 +51,6 @@ async function generateSubtitle (imdbId) {
 
   subtitles.all.push(translated)
 
-  setTimeout(() => {
-    console.log(subtitles.all)
-  }, 4000)
   return subtitles.all
 }
 
