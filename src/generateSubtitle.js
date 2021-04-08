@@ -2,7 +2,7 @@
 require('dotenv').config()
 const OS = require('opensubtitles-api')
 
-const langcodes = ['en', 'pb', 'pt', 'zt', 'ja', 'ar', 'es', 'ru']
+const langcodes = ['en', 'pb', 'ar', 'es']
 
 async function openSubtitles (imdbId) {
   const OpenSubtitles = new OS({
@@ -20,9 +20,11 @@ async function openSubtitles (imdbId) {
   const sub = {}
   for (const langcode in subtitles) {
     if (langcodes.includes(langcode)) {
+      let i = 1
       for (const data of subtitles[langcode]) {
         sub.url = data.utf8
-        sub.lang = (data.lang)
+        sub.lang = `${data.lang} ${i}`
+        i++
         const temp = JSON.stringify(sub)
         all.push(JSON.parse(temp))
       }
