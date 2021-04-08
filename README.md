@@ -4,36 +4,28 @@ Extensão de legendas feita para o aplicativo de filmes [Stremio](https://www.st
 
 Foi utilizado o [stremio-addon-sdk](https://github.com/Stremio/stremio-addon-sdk) para o desenvolvimento dessa aplicação. Para quem quiser conhecer mais é só entrar no github do [Stremio](https://github.com/Stremio).
 
+Para gerar a legenda traduzida eu utilizei um microsserviço que criei: [translate-ms](https://github.com/vmotta8/translate-ms)
+
 ### :bookmark: Como funciona
-Com a extensão instalada, é só abrir qualquer filme do **Stremio** e ir nas opções de legenda, lá terá uma opção chamada "Eng PtBr".
+Com a extensão instalada, é só abrir qualquer filme do **Stremio** e ir nas opções de legenda, lá terá uma opção chamada "Translated".
 
 Na legenda haverá algumas palavras traduzidas para facilitar o entendimento de algumas frases. Por exemplo: "The blight(praga) came and we had to burn it."
 
-Além dessa opção, também terá a opção da legenda apenas em inglês ou português, assim não há necessidade de instalar mais de uma extensão de legenda para utilizar o **Stremio**.
+Além dessa opção, também terá outros idiomas, assim não há necessidade de instalar mais de uma extensão de legenda para utilizar o **Stremio**.
 
 ### :clapper: Exemplo
 <img src="public/stremiophoto.png">
 
-### :low_brightness: Como utilizar:
-Por enquanto a extensão não está hospedada, mas é possível testá-la localmente.
+### :low_brightness: Como utilizar
+  - Acesse: https://subtitles-stremio-addon.herokuapp.com/
+  - Instale a extensão
+  - Aproveite!!
 
-```
-% git clone https://github.com/vmotta8/subtitles-stremio-addon.git
-
-% cd subtitles-stremio-addon
-
-% yarn
-
-% node addon.js
-```
-Após ter feito isso o programa estará rodando localmente e terá que instalar a extensão no **Stremio**.
-
-Para instalar basta seguir os passos do [tutorial de instalação que há na documentação do sdk.](https://github.com/Stremio/stremio-addon-sdk/blob/master/docs/testing.md#how-to-install-add-on-in-stremio) (É bem simples, só copiar a url do log e colar na busca de extensões do Stremio)
 
 ### :wrench: Mecanismo de funcionamento
   - Quando um filme é aberto o programa coleta o Id.
   - Com esse Id o programa busca legendas para o filme usando a api do [Opensubtitles](https://www.opensubtitles.org/).
-  - O programa usa a legenda inglês coletada para gerar uma nova que será exibida com algumas palavras traduzidas.
+  - A url da legenda em inglês é enviada pra o serviço de tradução e é gerada a legenda traduzida.
 
 ### Autor
 ---
