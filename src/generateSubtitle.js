@@ -52,8 +52,6 @@ async function generateSubtitle (imdbId) {
 
   subtitles.all.push(translated)
 
-  await axios.get(url)
-
   return subtitles.all
 }
 
