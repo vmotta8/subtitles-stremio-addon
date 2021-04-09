@@ -11,7 +11,7 @@ const builder = new addonBuilder({
   name: 'English Portuguese Br Subtitles',
   description: 'Best English, Portuguese Br, Translated Subtitles and others to your movie',
 
-  types: ['movie'],
+  types: ['movie', 'series'],
   catalogs: [],
   resources: [
     'subtitles'
