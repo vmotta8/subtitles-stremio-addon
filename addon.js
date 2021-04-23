@@ -20,7 +20,15 @@ const builder = new addonBuilder({
 
 builder.defineSubtitlesHandler(async function (args) {
   if ((args.id).slice(0, 2) === 'tt') {
-    const subtitles = await generateSubtitle(args.id)
+    const dataID = args.id.split(':')
+
+    let subtitles
+    if (dataID.length > 1) {
+      subtitles = await generateSubtitle({ imdbid: dataID[0], season: dataID[1], episode: dataID[2] })
+    } else {
+      subtitles = await generateSubtitle({ imdbid: dataID[0] })
+    }
+
     return Promise.resolve({ subtitles: subtitles })
   } else {
     return Promise.resolve({ subtitles: [] })
