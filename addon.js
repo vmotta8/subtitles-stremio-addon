@@ -5,7 +5,7 @@ const { generateSubtitle } = require('./src/generateSubtitle')
 
 const builder = new addonBuilder({
   id: 'org.subtitletranslateaddon',
-  version: '1.0.5',
+  version: '1.1.0',
 
   logo: 'https://raw.githubusercontent.com/vmotta8/subtitles-stremio-addon/master/public/logo.png',
   name: 'English Portuguese Br Subtitles',
