@@ -38,12 +38,13 @@ function formatSubtitles (subtitles) {
 
   const all = []
   const sub = {}
+  let i = 1
   for (const langcode in subtitles) {
     if (langcodes.includes(langcode)) {
-      let i = 1
       for (const data of subtitles[langcode]) {
+        sub.id = `engptbrId${i}`
         sub.url = data.utf8
-        sub.lang = `${data.lang} ${i}`
+        sub.lang = `${data.lang}`
         i++
         const temp = JSON.stringify(sub)
         all.push(JSON.parse(temp))
@@ -61,6 +62,7 @@ function formatSubtitles (subtitles) {
 
   const url = `${process.env.TRANSLATE_URL}/${englishSubtitle}`
   const translated = {
+    id: 'engptbrId',
     url: url,
     lang: 'Translated'
   }
