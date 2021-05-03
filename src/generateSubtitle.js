@@ -5,25 +5,37 @@ const OS = require('opensubtitles-api')
 const langcodes = ['en', 'pb', 'pt', 'es']
 
 async function openSubtitles (data) {
-  const OpenSubtitles = new OS({
-    useragent: 'UserAgent',
-    ssl: true
-  })
+  try {
+    const OpenSubtitles = new OS({
+      useragent: 'UserAgent',
+      ssl: true
+    })
 
-  const query = {
-    extensions: ['srt'],
-    limit: '3',
-    ...data
+    const query = {
+      extensions: ['srt'],
+      limit: '3',
+      ...data
+    }
+
+    const subtitles = await OpenSubtitles.search(query)
+
+    if (Object.keys(subtitles).length === 0) {
+      console.log(subtitles)
+      return 0
+    }
+
+    return subtitles
+  } catch (error) {
+    console.log(error)
+    return 0
   }
-
-  console.log(query)
-
-  const subtitles = await OpenSubtitles.search(query)
-
-  return subtitles
 }
 
 function formatSubtitles (subtitles) {
+  if (!subtitles) {
+    return []
+  }
+
   const all = []
   const sub = {}
   for (const langcode in subtitles) {

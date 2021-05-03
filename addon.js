@@ -5,7 +5,7 @@ const { generateSubtitle } = require('./src/generateSubtitle')
 
 const builder = new addonBuilder({
   id: 'org.subtitletranslateaddon',
-  version: '1.0.4',
+  version: '1.0.5',
 
   logo: 'https://raw.githubusercontent.com/vmotta8/subtitles-stremio-addon/master/public/logo.png',
   name: 'English Portuguese Br Subtitles',
@@ -19,17 +19,21 @@ const builder = new addonBuilder({
 })
 
 builder.defineSubtitlesHandler(async function (args) {
-  if ((args.id).slice(0, 2) === 'tt') {
-    const dataID = args.id.split(':')
+  const dataID = args.id.split(':')
+  if ((dataID[0]).slice(0, 2) === 'tt' && dataID[0].length <= 12) {
+    try {
+      let subtitles
+      if (dataID.length > 1) {
+        subtitles = await generateSubtitle({ imdbid: dataID[0], season: dataID[1], episode: dataID[2] })
+      } else {
+        subtitles = await generateSubtitle({ imdbid: dataID[0] })
+      }
 
-    let subtitles
-    if (dataID.length > 1) {
-      subtitles = await generateSubtitle({ imdbid: dataID[0], season: dataID[1], episode: dataID[2] })
-    } else {
-      subtitles = await generateSubtitle({ imdbid: dataID[0] })
+      return Promise.resolve({ subtitles: subtitles })
+    } catch (error) {
+      console.log(error)
+      return Promise.resolve({ subtitles: [] })
     }
-
-    return Promise.resolve({ subtitles: subtitles })
   } else {
     return Promise.resolve({ subtitles: [] })
   }
