@@ -2,8 +2,6 @@
 require('dotenv').config()
 const OS = require('opensubtitles-api')
 
-const langcodes = ['en', 'pb', 'pt', 'es']
-
 async function openSubtitles (data) {
   try {
     const OpenSubtitles = new OS({
@@ -36,46 +34,41 @@ function formatSubtitles (subtitles) {
     return []
   }
 
-  const all = []
-  const sub = {}
-  let i = 1
-  for (const langcode in subtitles) {
-    if (langcodes.includes(langcode)) {
-      for (const data of subtitles[langcode]) {
-        sub.id = `engptbrId${i}`
-        sub.url = data.utf8
-        sub.lang = `${data.lang}`
-        i++
-        const temp = JSON.stringify(sub)
-        all.push(JSON.parse(temp))
+  const languages = ['en', 'pb', 'pt', 'es']
+
+  const formattedSubtitles = []
+  languages.forEach(langCode => {
+    try {
+      for (const data of subtitles[langCode]) {
+        formattedSubtitles.push({
+          id: '1',
+          url: data.utf8,
+          lang: data.lang
+        })
       }
+    } catch {
+      // do nothing if the subtitles[langCode] are not iterable
     }
+  })
+
+  try {
+    formattedSubtitles.push({
+      id: 'engptbrId',
+      url: `${process.env.TRANSLATE_URL}/${(subtitles.en[0].utf8).split('/').join('%2F')}`,
+      lang: 'Translated'
+    })
+  } catch {
+    // do nothing if there is no english subtitle
   }
 
-  let englishSubtitle
-  if (subtitles.en) {
-    englishSubtitle = subtitles.en[0].utf8
-    englishSubtitle = englishSubtitle.split('/').join('%2F')
-  } else {
-    englishSubtitle = ''
-  }
-
-  const url = `${process.env.TRANSLATE_URL}/${englishSubtitle}`
-  const translated = {
-    id: 'engptbrId',
-    url: url,
-    lang: 'Translated'
-  }
-  all.push(translated)
-
-  return all
+  return formattedSubtitles
 }
 
 async function generateSubtitle (data) {
-  const opensubtitles = await openSubtitles(data)
-  const subtitles = formatSubtitles(opensubtitles)
+  const subtitles = await openSubtitles(data)
+  const formattedSubtitles = formatSubtitles(subtitles)
 
-  return subtitles
+  return formattedSubtitles
 }
 
 module.exports = { generateSubtitle }
