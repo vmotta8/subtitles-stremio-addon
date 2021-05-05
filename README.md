@@ -26,6 +26,7 @@ To generate the translated subtitle, I created a [microservice](https://github.c
 ### :wrench: Tools and technologies
   - Nodejs
   - Typescript
+  - Jest
   - Redis
   - Stremio Addon Sdk
   - Aws Lambda Functions
