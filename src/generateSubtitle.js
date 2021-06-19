@@ -11,7 +11,7 @@ async function openSubtitles (data) {
 
     const query = {
       extensions: ['srt'],
-      limit: '3',
+      limit: '5',
       ...data
     }
 
@@ -51,15 +51,15 @@ function formatSubtitles (subtitles) {
     }
   })
 
-  try {
-    formattedSubtitles.push({
-      id: 'engptbrId',
-      url: `${process.env.TRANSLATE_URL}/${(subtitles.en[0].utf8).split('/').join('%2F')}`,
-      lang: 'Translated'
-    })
-  } catch {
-    // do nothing if there is no english subtitle
-  }
+  // try {
+  //   formattedSubtitles.push({
+  //     id: 'engptbrId',
+  //     url: `${process.env.TRANSLATE_URL}/${(subtitles.en[0].utf8).split('/').join('%2F')}`,
+  //     lang: 'Translated'
+  //   })
+  // } catch {
+  //   // do nothing if there is no english subtitle
+  // }
 
   return formattedSubtitles
 }
