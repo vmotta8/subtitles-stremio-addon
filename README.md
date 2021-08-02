@@ -1,4 +1,5 @@
 # Subtitles Stremio Addon
+## (deprecated)
 
 Subtitles addon for [Stremio](https://www.stremio.com/). 
   - [stremio-addon-sdk](https://github.com/Stremio/stremio-addon-sdk) was used to develop the application
