@@ -11,21 +11,21 @@ async function openSubtitles (data) {
 
     const query = {
       extensions: ['srt'],
-      limit: '5',
+      limit: '10',
       ...data
     }
 
     const subtitles = await OpenSubtitles.search(query)
 
-    if (Object.keys(subtitles).length === 0) {
-      console.log(subtitles)
-      return 0
+    if (!Object.keys(subtitles).length) {
+      console.log('No subtitles found')
+      return null
     }
 
     return subtitles
   } catch (error) {
     console.log(error)
-    return 0
+    return null
   }
 }
 
@@ -34,41 +34,34 @@ function formatSubtitles (subtitles) {
     return []
   }
 
-  const languages = ['en', 'pb', 'pt', 'es']
+  const languages = ['en', 'pb', 'pt']
 
   const formattedSubtitles = []
   languages.forEach(langCode => {
+    let i = 0
     try {
       for (const data of subtitles[langCode]) {
+        i++
         formattedSubtitles.push({
-          id: '1',
+          id: `${langCode}-${i}`,
           url: data.utf8,
           lang: data.lang
         })
       }
-    } catch {
-      // do nothing if the subtitles[langCode] are not iterable
+    } catch (error) {
+      console.log(error)
     }
   })
 
-  // try {
-  //   formattedSubtitles.push({
-  //     id: 'engptbrId',
-  //     url: `${process.env.TRANSLATE_URL}/${(subtitles.en[0].utf8).split('/').join('%2F')}`,
-  //     lang: 'Translated'
-  //   })
-  // } catch {
-  //   // do nothing if there is no english subtitle
-  // }
-
   return formattedSubtitles
 }
 
-async function generateSubtitle (data) {
+async function generateSubtitles (data) {
   const subtitles = await openSubtitles(data)
   const formattedSubtitles = formatSubtitles(subtitles)
+  console.log(`Found ${formattedSubtitles.length} subtitles`)
 
   return formattedSubtitles
 }
 
-module.exports = { generateSubtitle }
+module.exports = { generateSubtitles, formatSubtitles }

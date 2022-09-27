@@ -1,15 +1,12 @@
 # Subtitles Stremio Addon
-## (deprecated)
 
 Subtitles addon for [Stremio](https://www.stremio.com/). 
-  - [stremio-addon-sdk](https://github.com/Stremio/stremio-addon-sdk) was used to develop the application
   - [Stremio Github](https://github.com/Stremio)
+  - [stremio-addon-sdk](https://github.com/Stremio/stremio-addon-sdk) was used to develop the application
 
 
 ### :low_brightness: How to use
-  - Access: https://subtitles-stremio-addon.herokuapp.com/
-  - Install
-  - Enjoy!!
+  - TBD
 
 
 ### :bookmark: How it works
@@ -17,22 +14,15 @@ Once installed, just open any movie or series and the subtitles will be there.
 
 In addition to the many languages, there will also be a subtitle with some words translated to help Brazilians who are learning English. For example: "The blight(praga) came and we had to burn it".
 
-To generate the translated subtitle, I created a [microservice](https://github.com/vmotta8/translate-ms)
-
-
 ### :clapper: Translated subtitle example
 <img src="public/stremiophoto.png">
 
 
 ### :wrench: Tools and technologies
   - Nodejs
-  - Typescript
   - Jest
-  - Redis
   - Stremio Addon Sdk
-  - Aws Lambda Functions
   - Open Subtitles Api
-  - Translate Api
 
 ### Author
 ---
