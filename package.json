@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
-    "test-unit": "npm test -- --watch -c jest-unit.config.js",
-    "test-integration": "npm test -- --watch -c jest-integration.config.js",
+    "test:watch": "npm test -- --watch",
     "index": "node src/run.js",
     "start": "node --max-old-space-size=4096 addon.js"
   },

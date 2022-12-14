@@ -24,13 +24,14 @@ async function openSubtitles (data) {
 
     return subtitles
   } catch (error) {
-    console.log(error)
+    console.log('Error on open subtitles method', error)
     return null
   }
 }
 
 function formatSubtitles (subtitles) {
   if (!subtitles) {
+    console.log('No subtitles to format')
     return []
   }
 
@@ -49,19 +50,42 @@ function formatSubtitles (subtitles) {
         })
       }
     } catch (error) {
-      console.log(error)
+      console.log('Error on format subtitles method', error)
     }
   })
 
-  return formattedSubtitles
+  return formattedSubtitles || []
+}
+
+async function translateSubtitles (formattedSubtitles) {
+  const englishSubtitlesUrls = formattedSubtitles.map(subtitle => {
+    if (subtitle?.id?.includes('en')) {
+      return subtitle.url
+    }
+    return null
+  })?.filter(Boolean)
+
+  const translatedSubtitlesUrls = englishSubtitlesUrls // TODO: implement translation
+
+  const translatedSubtitles = translatedSubtitlesUrls.map((url, index) => {
+    return {
+      id: `translated-${index + 1}`,
+      url,
+      lang: 'Translated'
+    }
+  })
+
+  return translatedSubtitles
 }
 
 async function generateSubtitles (data) {
   const subtitles = await openSubtitles(data)
   const formattedSubtitles = formatSubtitles(subtitles)
-  console.log(`Found ${formattedSubtitles.length} subtitles`)
+  const translatedSubtitles = await translateSubtitles(formattedSubtitles)
+  const subtitlesToReturn = [...formattedSubtitles, ...translatedSubtitles]
+  console.log(`Found ${subtitlesToReturn.length} subtitles`)
 
-  return formattedSubtitles
+  return subtitlesToReturn
 }
 
-module.exports = { generateSubtitles, formatSubtitles }
+module.exports = { generateSubtitles, formatSubtitles, translateSubtitles }
