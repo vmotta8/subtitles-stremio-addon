@@ -4,11 +4,6 @@ Subtitles addon for [Stremio](https://www.stremio.com/).
   - [Stremio Github](https://github.com/Stremio)
   - [stremio-addon-sdk](https://github.com/Stremio/stremio-addon-sdk) was used to develop the application
 
-
-### :low_brightness: How to use
-  - TBD
-
-
 ### :bookmark: How it works
 Once installed, just open any movie or series and the subtitles will be there.
 
