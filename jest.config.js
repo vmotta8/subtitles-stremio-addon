@@ -6,5 +6,8 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.js'
   ],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  moduleNameMapper: {
+    axios: 'axios/dist/node/axios.cjs'
+  }
 }
