@@ -7,7 +7,7 @@ const builder = new addonBuilder({
   id: 'org.abcsubtitles',
   version: '1.0.0',
 
-  logo: 'https://raw.githubusercontent.com/vmotta8/subtitles-stremio-addon/master/public/image.png',
+  logo: undefined,
   name: 'Abc Subtitles',
   description: 'Best subtitles to your movie',
 
