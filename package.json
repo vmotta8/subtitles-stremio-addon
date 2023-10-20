@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.431.0",
+    "@aws-sdk/s3-request-presigner": "^3.431.0",
     "axios": "^1.5.1",
     "dotenv": "^8.2.0",
     "opensubtitles-api": "^5.1.2",

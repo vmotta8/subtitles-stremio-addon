@@ -442,6 +442,20 @@
     "@smithy/util-middleware" "^2.0.4"
     tslib "^2.5.0"
 
+"@aws-sdk/s3-request-presigner@^3.431.0":
+  version "3.431.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.431.0.tgz#f0d93f48be16ec520aa76d826fe924720d128b18"
+  integrity sha512-R6hZfJozs9a8p5pxncMRyJOKgteshe5GGqeX6pobKZX9y29fVQkTknqFLgnSk/Zcp1JcUZz2ZiVgzoLwWaqunQ==
+  dependencies:
+    "@aws-sdk/signature-v4-multi-region" "3.428.0"
+    "@aws-sdk/types" "3.428.0"
+    "@aws-sdk/util-format-url" "3.428.0"
+    "@smithy/middleware-endpoint" "^2.1.2"
+    "@smithy/protocol-http" "^3.0.7"
+    "@smithy/smithy-client" "^2.1.11"
+    "@smithy/types" "^2.3.5"
+    tslib "^2.5.0"
+
 "@aws-sdk/signature-v4-multi-region@3.428.0":
   version "3.428.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4-multi-region/-/signature-v4-multi-region-3.428.0.tgz#30de84c6391f140e446e1bc1b482270863b098df"
@@ -515,6 +529,16 @@
   integrity sha512-ToKMhYlUWJ0YrbggpJLZeyZZNDXtQ4NITxqo/oeGltTT9KG4o/LqVY59EveV0f8P32ObDyj9Vh1mnjxeo3DxGw==
   dependencies:
     "@aws-sdk/types" "3.428.0"
+    tslib "^2.5.0"
+
+"@aws-sdk/util-format-url@3.428.0":
+  version "3.428.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-format-url/-/util-format-url-3.428.0.tgz#0bef8ba279d318fee1b85c88689ec9fb52de10b7"
+  integrity sha512-Jx3VwsGXaIGtFNRVg9IqGWMm7wTDsdTRLn29Tn2a6N38TaqrRMpC3T0YK3YrWKjNYhClo5tUIJLi5QGk2d2vBg==
+  dependencies:
+    "@aws-sdk/types" "3.428.0"
+    "@smithy/querystring-builder" "^2.0.11"
+    "@smithy/types" "^2.3.5"
     tslib "^2.5.0"
 
 "@aws-sdk/util-locate-window@^3.0.0":
@@ -1318,7 +1342,7 @@
     "@smithy/types" "^2.4.0"
     tslib "^2.5.0"
 
-"@smithy/querystring-builder@^2.0.12":
+"@smithy/querystring-builder@^2.0.11", "@smithy/querystring-builder@^2.0.12":
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/@smithy/querystring-builder/-/querystring-builder-2.0.12.tgz#d13e0eea08d43596bdbb182206ccdee0956d06fd"
   integrity sha512-cDbF07IuCjiN8CdGvPzfJjXIrmDSelScRfyJYrYBNBbKl2+k7QD/KqiHhtRyEKgID5mmEVrV6KE6L/iPJ98sFw==

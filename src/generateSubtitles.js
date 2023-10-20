@@ -1,6 +1,17 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config()
 const OS = require('opensubtitles-api')
+const axios = require('axios')
+const { S3Client, PutObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3')
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+
+const s3Client = new S3Client({
+  region: 'us-east-1',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  }
+})
 
 async function openSubtitles (data) {
   try {
@@ -65,7 +76,22 @@ async function translateSubtitles (formattedSubtitles) {
     return null
   })?.filter(Boolean)
 
-  const translatedSubtitlesUrls = englishSubtitlesUrls // TODO: implement translation
+  const translatedSubtitlesUrls = []
+  try {
+    // eslint-disable-next-line
+    for (const [index, url] of englishSubtitlesUrls.entries()) {
+      const englishSubtitleResponse = await axios.get(url)
+      const subtitle = englishSubtitleResponse.data
+
+      // TODO: implement translation
+
+      const savedFileUrl = await uploadTranslatedSubtitleToS3(`translated_english_subtitle_${index + 1}.srt`, subtitle)
+      translatedSubtitlesUrls.push(savedFileUrl)
+      break
+    }
+  } catch (error) {
+    console.log('Error on fetch and translate english subtitles', error)
+  }
 
   const translatedSubtitles = translatedSubtitlesUrls.map((url, index) => {
     return {
@@ -76,6 +102,33 @@ async function translateSubtitles (formattedSubtitles) {
   })
 
   return translatedSubtitles
+}
+
+async function uploadTranslatedSubtitleToS3 (key, subtitle) {
+  const bucket = process.env.AWS_BUCKET_NAME
+  const uploadParams = {
+    Bucket: bucket,
+    Key: key,
+    Body: subtitle
+  }
+
+  const getParams = {
+    Bucket: bucket,
+    Key: key
+  }
+
+  try {
+    const uploadCommand = new PutObjectCommand(uploadParams)
+    await s3Client.send(uploadCommand)
+
+    const getCommand = new GetObjectCommand(getParams)
+    const presignedUrl = await getSignedUrl(s3Client, getCommand, { expiresIn: 3600 })
+    console.log('File uploaded successfully')
+
+    return presignedUrl
+  } catch (err) {
+    console.error('File not uploaded', err)
+  }
 }
 
 async function generateSubtitles (data) {
